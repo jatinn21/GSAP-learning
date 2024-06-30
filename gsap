@@ -1,0 +1,73 @@
+1. first try to connect the cdn of gsap and copy and paste the link in the html file.
+
+2.  Follow the order, gsap, scrolltrigger and script.js
+
+3. gsap.to  (Or)  gsap.from()
+
+4. you can add your css in it but it should be in camel case just like we do using js 
+   
+    - backgroundColor ✅
+
+    For instance  : gsap.to( "nav #main" , {
+        color: 'red',
+        backgroundColor:'white',
+        borderRadius  : "1rem",
+        duration: 2,
+        delay: .5
+    });
+
+    you can also select multiple elements by separating them using comma.
+    example : "nav #main, h3 , p "
+
+    Full code :  
+    From  initial properties to this styling properties 
+    // gsap.to("p", {
+    //   duration: 2,
+    //   delay: 1,
+    //   color: "black",
+    //   backgroundColor: "white",
+    // });
+
+    From this styling properties to initial properties
+    // gsap.from("div p,h1", {
+    //   duration: 0.6,
+    //   delay: 1,
+    //   opacity: 0,
+    //   x: -100,
+    // });
+
+
+Special properties : 
+
+a. stagger : if you have targetted a bunch of elements like all p elements, all goes in together. If you want that each element should not go together, we use stagger : <number>    (Positive means top to bottom chalega, negative : bottom to top ) not the order you mentioned but in respect to the order in the DOM 
+
+    Ignores the duration property.
+
+    each element will take 0.5 seconds to complete. 
+    // gsap.from("div p,h1", {
+    //   duration: 0.6,
+    //   delay: 1,
+    //   opacity: 0,
+    //   x: -100,
+    //   stagger: 0.5,    <----------- Hero
+    // });
+
+
+
+b. repeat  : this will repeat the animation.    Total animation = <number> + 1;
+        the first animation is not considered.
+
+    // gsap.from("div p,h1", {
+    //   duration: 0.6,
+    //   delay: 1,
+    //   opacity: 0,
+    //   x: -100,
+    //   stagger: 0.5,  
+    //   repeat: 2,    <----------- Hero    2+3 , all elements will reanimate from start 
+    //   yoyo: true,   <----------- Hero  For yoyo effect
+    // });  
+
+
+    If you want to work like yoyo, like a ball comes back when throw on a wall. same effect can happen using yoyo
+
+   
