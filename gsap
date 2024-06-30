@@ -382,3 +382,50 @@ document.querySelector("body").addEventListener("mousemove", function (dlt) {
   });
 });
 
+
+######################################################
+Trick : how to run an element animation before it order arrives in the timeline. 
+
+// note : To make the am element in the timeline gets animated faster before the order like A -> B -> C -> D (Hero element) 
+now we know D will only get animated once A has been it work, then B , then C and then D will start work.
+But we want it get work before then use the third argument : 
+
+   tl.from(elemnetA,{
+      ....styling A
+   })
+
+   tl.from(elemnetB,{
+      ....styling B
+   })
+
+   tl.from(elemnetC,{
+      ....styling C
+   })
+
+   tl.from(elemnetD,{
+      ....styling D
+   },  "-=1"  )        <--------------------------Hero power, -=1 means start the animation 1 second early.  
+
+
+############################################################
+Trick : How to run two elements in single go in the timeline.
+
+Just pass a normal string with same value to both the elemmt's 3rd argument.
+
+
+   tl.from(elemnetA,{
+      ....styling A
+   }, "AC-pair")
+
+   tl.from(elemnetB,{
+      ....styling B
+   },"BD-pair")
+
+   tl.from(elemnetC,{
+      ....styling C
+   },""AC-pair"")
+
+   tl.from(elemnetD,{
+      ....styling D
+   }, "BD-pair")
+
