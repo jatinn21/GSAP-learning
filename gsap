@@ -1,6 +1,19 @@
 1. first try to connect the cdn of gsap and copy and paste the link in the html file.
 
+
+
 2.  Follow the order, gsap, scrolltrigger and script.js
+
+   here it is : 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
 
 3. gsap.to  (Or)  gsap.from()
 
@@ -71,3 +84,35 @@ b. repeat  : this will repeat the animation.    Total animation = <number> + 1;
     If you want to work like yoyo, like a ball comes back when throw on a wall. same effect can happen using yoyo
 
    
+
+
+// Chapter 2 : timeline
+ For example : we are planning for a trip to goa.
+ some are going with bus (takes 10H) , 
+ some are planning to go with aeroplane (takes 2H)
+ some are going with bike (take 12H)
+
+ But all will be start there trip at the same time (10AM suppose).
+
+ Just like here all elements have their own animation duration but in our case they all run at same time. now to make it look like everything goes in sync we have to use math and put logical amount of delays.
+    A = take 10 H , and delay of 2H
+    B = 10+2, take a delay of 12H and x hours duration
+    C  = 12H + B'x Hours    
+    this will look like they are sync.
+
+Mind fucked? to get relief from this shit, we use timeline.
+
+ -just make a constant variable, assign a timeline to it and usiing it make all the annimations.
+ 
+ like : var tl = gsap.timeline();
+     tl.to('element A',{
+        //styling with duration and no requirement of delay
+     })
+
+     tl.to('element B',{
+        //styling with duration and no requirement of delay
+     })
+
+     Now the element B will only start animating when the element A animation has been completed
+
+     For example make a nav and there are two components logo and links. you want the logo animation should start first and when it's over then only the links should start animating. but here also things should go one by one and not everything 
