@@ -333,3 +333,41 @@ div#page3 {
     });
 
 
+
+
+
+// Cursor Game 
+
+<div class="main">
+    <div id="cursor"></div>
+</div>
+
+
+
+div.main {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  position: relative;
+}
+
+#cursor {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  position: fixed;
+  border-radius: 50%;
+}
+
+
+document.querySelector("body").addEventListener("mousemove", function (dlt) {
+  console.log(dlt.x, dlt.y);
+  gsap.to("#cursor", {
+    duration: 0.5,
+    x: dlt.x - 15,
+    y: dlt.y - 15,
+  });
+});
+
+
+
