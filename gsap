@@ -85,7 +85,7 @@ b. repeat  : this will repeat the animation.    Total animation = <number> + 1;
 
    
 
-
+###############################################################################
 // Chapter 2 : timeline
  For example : we are planning for a trip to goa.
  some are going with bus (takes 10H) , 
@@ -118,7 +118,23 @@ Mind fucked? to get relief from this shit, we use timeline.
      For example make a nav and there are two components logo and links. you want the logo animation should start first and when it's over then only the links should start animating. but here also things should go one by one and not everything 
 
 
+    You can also pause the timeline using pause();
+    var tl = gsap.timeline();
 
+    tl.to(<elementA>,{
+        ...
+    });
+
+    tl.to(<elementB>,{
+        ...
+    });
+
+    tl.pause()
+
+    //very powerfull you can resume it only when you want using js  : tl.play().
+
+
+###############################################################################
 // Chapter 3 : ScrollTrigger
 when you want a certain animation to be held not on any delay or after certain element got animated but only based on the scrolling then this comes into play.
 
@@ -183,7 +199,7 @@ gsap.from("#page2 #box2", {
 });
 
 
-
+###############################################################################
 #pin property : used to make the x scrolling or pin the container untill it has been comppletely scrolled.
 requires the scrolling effect or you can say scrub property : )
 Below is the code. 
@@ -268,7 +284,7 @@ div#page3 {
 
 
 
-
+###############################################################################
 # SVG String effect : 
 
     - gsap.to(element,{
@@ -333,3 +349,8 @@ div#page3 {
     });
 
 
+
+###############################################################################
+// SideBar effect
+
+Code has been inserted to the code :
