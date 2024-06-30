@@ -267,4 +267,69 @@ div#page3 {
 
 
 
-}
+
+
+# SVG String effect : 
+
+    - gsap.to(element,{
+        ...styles,
+        attr : { propertyName : Value }       <------------player
+    });
+
+   <div id="string">
+        <svg width="1024" height="400" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 200 Q 512 200 1024 200" stroke="black" fill="transparent" />
+        </svg>
+    </div>
+
+
+// styles : 
+
+    div {
+    height: 40rem;
+    width: 60rem;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    svg {
+    background-color: yellow;
+    }
+
+    #string {
+    height: 400px;
+    width: 100%;
+    background-color: red;
+    }
+
+
+    Gsap: 
+    var initialPath = "M 10 200 Q 512 200 1024 200";
+    var finalPath;
+    
+    document.querySelector("#string").addEventListener("mousemove", function (det) {
+    const rect = document.querySelector("#string").getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    console.log(mouseX, mouseY);
+    finalPath = `M 10 200 Q ${mouseX} ${mouseY} 1024 200`;
+    gsap.to("svg path", {
+        duration: 0.2,
+        attr: { d: finalPath },
+    });
+    });
+
+    document
+    .querySelector("#string")
+    .addEventListener("mouseleave", function (det) {
+        gsap.to("svg path", {
+        duration: 0.8,
+        ease: "elastic.out",
+        attr: { d: initialPath },
+        });
+    });
+
+
