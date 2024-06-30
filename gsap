@@ -116,3 +116,155 @@ Mind fucked? to get relief from this shit, we use timeline.
      Now the element B will only start animating when the element A animation has been completed
 
      For example make a nav and there are two components logo and links. you want the logo animation should start first and when it's over then only the links should start animating. but here also things should go one by one and not everything 
+
+
+
+// Chapter 3 : ScrollTrigger
+when you want a certain animation to be held not on any delay or after certain element got animated but only based on the scrolling then this comes into play.
+
+Step : insert this cdn script into file : 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+for example there are two divs both has a box in middle that got same animation. Now watch the first box and then scroll down, you won't see the box 2 animation . It has occured but at that momenet you were focused on the box 1 and box 2 has no concern whether you have seen or not, it will be played no matter it was in the viewport or not.
+
+to handle this we can use scrolltrigger.
+
+gsap.from('#page1 #box1',{
+    duration:2,
+    delay:1,
+    opacity:0,
+    scale:0,
+    borderRadius:"2rem",
+    rotate:360
+})
+
+No problem, in first one.
+
+But the problem occurs in second one :
+//upper upper se
+gsap.from('#page2 #box2',{
+    duration:2,
+    opacity:0,
+    scale:0,
+    borderRadius:"2rem",
+    rotate:360
+    scrolltrigger: <elementname>    /// kaam ho jaega, when you scroll to the page2
+})
+
+
+// some properties of ScrollTrigger to master it :
+
+   <div id="page1">
+        <div class="box" id="box1"></div>
+    </div>
+    <div id="page2">
+        <div class="box" id="box2"></div>
+    </div>
+    <div id="page3">
+        <div class="box" id="box3"></div>
+    </div>
+
+
+now to make the scrolling effect we want start, end and scrub : 
+gsap.from("#page2 #box2", {
+  duration: 1,
+  opacity: 0,
+  rotate: 720,
+  scrollTrigger: {
+    scroller: "body",
+    trigger: "#page2 #box2",
+    start: "top 50%",
+    markers: true,
+    end: "top 20%",
+    scrub: 2,     <----------Hero 
+  },
+});
+
+
+
+#pin property : used to make the x scrolling or pin the container untill it has been comppletely scrolled.
+requires the scrolling effect or you can say scrub property : )
+Below is the code. 
+
+
+    <div id="page2">
+        <p>Home</p>
+    </div>
+    <div id="page1">
+        <h1>
+            Experience
+        </h1>
+    </div>
+    <div id="page3">
+        <p>box</p>
+    </div>
+
+
+
+    gsap.to("#page1 h1", {
+        transform: "translateX(-100%)",
+        scrollTrigger: {
+            scroller: "body",
+            trigger: "#page1 ",
+            start: "top 0%",
+            end: "top -100%",
+            markers: true,
+            scrub: 2,
+            pin: true,
+        },
+    }); 
+
+
+// Style
+body {
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+div#page1 {
+  height: 100%;
+  width: 100%;
+  background-color: royalblue;
+}
+div#page1 h1 {
+  width: max-content;
+  background-color: red;
+  font-size: 45vw;
+  text-transform: uppercase;
+}
+div#page2 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(206, 200, 20);
+}
+div#page3 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(200, 115, 40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#box1 {
+  height: 25rem;
+  width: 25rem;
+  background-color: red;
+}
+#box2 {
+  height: 25rem;
+  width: 25rem;
+  background-color: blue;
+}
+#box3 {
+  height: 25rem;
+  width: 25rem;
+  background-color: orange;
+}
+
+
+
+
+
+}
